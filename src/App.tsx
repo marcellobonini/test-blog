@@ -1,9 +1,16 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
 
 function App() {
   return (
-    <div>
-      <h1 className="text-3xl">Hello React + Tailwind</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index  /> 
+          <Route path="/posts/:id?" /> 
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
