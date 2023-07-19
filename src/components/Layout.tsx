@@ -3,9 +3,11 @@ import Header from "./Header";
 
 export default function Layout() {
   return (
-    <div className="flex flex-col">
+    <div className="h-screen flex flex-col">
       <Header/>
-      <Outlet/>
+      <div className="h-full flex flex-col items-center m-8">
+        <Outlet/>
+      </div>
     </div>
   )
 }
