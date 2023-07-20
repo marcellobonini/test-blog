@@ -3,15 +3,15 @@ import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "../ui/dialog"
 import CreatePost from "./CreatePost";
 import axios from "axios";
 import { Button } from "../ui/button";
-import {Table, TableCaption, TableHeader, TableRow, TableHead, TableBody, TableCell } from "../ui/table";
+import {Table, TableCaption, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
 import { ScrollArea } from "../ui/scroll-area"
 import { Link } from "react-router-dom";
 
-const baseURL = "http://localhost:4000/posts"
+const baseURL = "https://4qn88jko43.execute-api.eu-north-1.amazonaws.com/dev/posts"
 
 export default function Posts() {
   interface DataType {
-    id: number;
+    ID: string;
     title: string;
     body: string;
     created_at: string;
@@ -55,8 +55,8 @@ export default function Posts() {
           <TableBody>
             {posts.map((post, index) => (
               <TableRow key={index}>
-                <TableCell className="font-medium">{post.id}</TableCell>
-                <TableCell><Link to={`/posts/${post.id}`}>{post.title}</Link></TableCell>
+                <TableCell className="font-medium">{post.ID}</TableCell>
+                <TableCell><Link to={`/posts/${post.ID}`}>{post.title}</Link></TableCell>
                 <TableCell>{post.body}</TableCell>
                 <TableCell>{post.created_at}</TableCell>
               </TableRow>
