@@ -7,7 +7,7 @@ import {Table, TableCaption, TableHeader, TableRow, TableHead, TableBody, TableC
 import { ScrollArea } from "../ui/scroll-area"
 import { Link } from "react-router-dom";
 
-const baseURL = "https://4qn88jko43.execute-api.eu-north-1.amazonaws.com/dev/posts"
+const baseURL = "https://tafmt3r5ff.execute-api.eu-north-1.amazonaws.com/dev/posts"
 
 export default function Posts() {
   interface DataType {
