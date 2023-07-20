@@ -3,7 +3,7 @@ import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "../ui/dialog"
 import CreatePost from "./CreatePost";
 import axios from "axios";
 import { Button } from "../ui/button";
-import {Table, TableCaption, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
+import {Table, TableCaption, TableHeader, TableRow, TableHead, TableBody, TableCell } from "../ui/table";
 import { ScrollArea } from "../ui/scroll-area"
 import { Link } from "react-router-dom";
 
