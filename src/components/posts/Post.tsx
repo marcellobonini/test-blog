@@ -45,7 +45,8 @@ export default function Post() {
   }
 
   function deletePost() {
-    axios.delete(`${baseURL}/${id}`)
+    axios.delete(`${baseURL}/${id}`);
+    setTimeout(reload,500);
   }
 
   function reload() {
