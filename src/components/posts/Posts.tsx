@@ -11,10 +11,9 @@ const baseURL = "https://tafmt3r5ff.execute-api.eu-north-1.amazonaws.com/dev/pos
 
 export default function Posts() {
   interface DataType {
-    ID: string;
+    id: string;
     title: string;
     body: string;
-    created_at: string;
   }
   const [posts, setPosts] = useState<Array<DataType>>([]);
 
@@ -49,16 +48,14 @@ export default function Posts() {
               <TableHead className="w-[100px]">ID</TableHead>
               <TableHead>Title</TableHead>
               <TableHead>Body</TableHead>
-              <TableHead>Created at</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {posts.map((post, index) => (
               <TableRow key={index}>
-                <TableCell className="font-medium">{post.ID}</TableCell>
-                <TableCell><Link to={`/posts/${post.ID}`}>{post.title}</Link></TableCell>
+                <TableCell className="font-medium">{post.id}</TableCell>
+                <TableCell><Link to={`/posts/${post.id}`}>{post.title}</Link></TableCell>
                 <TableCell>{post.body}</TableCell>
-                <TableCell>{post.created_at}</TableCell>
               </TableRow>
             ))}
           </TableBody>

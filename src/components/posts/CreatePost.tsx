@@ -7,9 +7,12 @@ import { Input } from "../ui/input"
 import { Textarea } from "../ui/textarea"
 import axios from "axios"
 
-const baseURL = "http://localhost:4000/posts"
+const baseURL = "https://tafmt3r5ff.execute-api.eu-north-1.amazonaws.com/dev/posts"
 
 const formSchema = z.object({
+  id: z.string().min(1, {
+    message: "Id must be at least 1 character.",
+  }),
   title: z.string().min(2, {
     message: "Title must be at least 2 characters.",
   }),
@@ -23,26 +26,45 @@ export default function CreatePost() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      id: "",
       title: "",
       body: "",
     },
   })
 
+  function reload() {
+    window.location.reload();
+  }
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    axios.post(baseURL, {
+    axios.put(baseURL, {
+      id: values.id,
       title: values.title,
       body: values.body
     })
     .then(function (response) {
       console.log(response);
     });
-    window.location.reload();
+    setTimeout(reload, 500);
   }
 
   return (
     <div className="">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <FormField
+            control={form.control}
+            name="id"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Title</FormLabel>
+                <FormControl>
+                  <Input placeholder="id..." {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name="title"

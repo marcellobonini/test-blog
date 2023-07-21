@@ -12,9 +12,12 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 
-const baseURL = "http://localhost:4000/posts"
+const baseURL = "https://tafmt3r5ff.execute-api.eu-north-1.amazonaws.com/dev/posts"
 
 const formSchema = z.object({
+  id: z.string().min(1, {
+    message: "Id must be at least 1 character.",
+  }),
   title: z.string().min(2, {
     message: "Title must be at least 2 characters.",
   }),
@@ -45,19 +48,24 @@ export default function Post() {
     axios.delete(`${baseURL}/${id}`)
   }
 
+  function reload() {
+    window.location.reload();
+  }
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema)
   })
 
   function updatePost(values: z.infer<typeof formSchema>) {
-    axios.patch(`${baseURL}/${id}`, {
+    axios.put(`${baseURL}`, {
+      id: values.id,
       title: values.title,
       body: values.body
     })
     .then(function (response) {
       console.log(response);
     });
-    window.location.reload();
+    setTimeout(reload,500);
   }
 
   return (
@@ -77,6 +85,19 @@ export default function Post() {
               <DialogDescription>
               <Form {...form}>
                   <form onSubmit={form.handleSubmit(updatePost)} className="space-y-4">
+                  < FormField
+                      control={form.control}
+                      name="id"
+                      defaultValue={id}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <Input type="hidden" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
                     <FormField
                       control={form.control}
                       name="title"
