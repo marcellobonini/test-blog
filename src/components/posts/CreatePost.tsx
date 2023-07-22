@@ -44,8 +44,8 @@ export default function CreatePost() {
     })
     .then(function (response) {
       console.log(response);
+      reload();
     });
-    setTimeout(reload, 500);
   }
 
   return (

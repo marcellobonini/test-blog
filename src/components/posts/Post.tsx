@@ -46,7 +46,11 @@ export default function Post() {
 
   function deletePost() {
     axios.delete(`${baseURL}/${id}`);
-    setTimeout(reload,500);
+    goToRoot();
+  }
+
+  function goToRoot() {
+    window.location.href = '/';
   }
 
   function reload() {
@@ -65,8 +69,8 @@ export default function Post() {
     })
     .then(function (response) {
       console.log(response);
+      reload();
     });
-    setTimeout(reload,500);
   }
 
   return (
@@ -147,7 +151,7 @@ export default function Post() {
               </DialogDescription>
             </DialogHeader>
             <DialogFooter>
-              <Button variant={"destructive"} onClick={() => deletePost()}><Link to="/">Delete</Link></Button>
+              <Button variant={"destructive"} onClick={() => deletePost()}>Delete</Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
